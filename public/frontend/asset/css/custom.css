@@ -1,0 +1,46 @@
+span.profile-name {
+    font-weight: 400;
+    color: #1c1c1c;
+    padding-left: 10px;
+}
+.tu-login-right, .tu-main-login {
+    display: flex;
+}
+.tu-login-right {
+    width: 100%;
+}
+.tu-login-right_title h2 {
+    color: #00bce2;
+}
+.tu-primbtn, .tu-secbtn, .tu-yellowbtn, .tu-primbtn-lg, .tu-primbtn-sm, .tu-primbtn-icon, .tu-navbar .navbar-collapse .navbar-nav > .nav-item > a::before {
+    background-color: #00bce2;
+}
+i.icon.icon-camera {
+    background: #00bce2;
+    color: white;
+}
+.tu-asidebox figure img {
+    height: 122px;
+}
+textarea.form-control {
+    height: auto;
+}
+.tu-main-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+header.tu-header {
+    background: #00bce2;
+}
+.tu-navbar .navbar-collapse .navbar-nav > .nav-item:not(.tu-loginlink) a {
+    color: #fff;
+}
+.mr-2 {
+    margin-right: 6px;
+}
+div#navbarSupportedContent {
+    background: #00bce2;
+}
+ul#tu-counter {
+    text-align: center;
+}
