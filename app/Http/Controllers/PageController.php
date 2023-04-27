@@ -172,19 +172,17 @@ class PageController extends Controller
     {
         return view('complain');
     }
-    public function jobs(Request $request)
-    {
-        return view('jobs');
-    }
     public function profile()
     {   
         $data['personal_info'] = DB::table('personal_info') ->where('user_id', auth()->user()->id) ->first();
         $data['job_preferences'] = DB::table('job_preferences') ->where('user_id', auth()->user()->id) ->first();
         $data['educational_information'] = DB::table('educational_information') ->where('user_id', auth()->user()->id) ->get();
-        $city = DB::table('city')->find($data['job_preferences']->city);
-        $data['job_preferences']->city_name = $city->name;
-        $location = DB::table('location')->find($data['job_preferences']->location);
-        $data['job_preferences']->location_name = $location->name;
+        if($data['job_preferences']){
+            $city = DB::table('city')->find($data['job_preferences']->city);
+            $data['job_preferences']->city_name = $city->name;
+            $location = DB::table('location')->find($data['job_preferences']->location);
+            $data['job_preferences']->location_name = $location->name;
+        }
         return view('profile', $data);
     }
     public function editProfile()
@@ -212,12 +210,21 @@ class PageController extends Controller
         $data['personal_info'] = DB::table('personal_info') ->where('user_id', auth()->user()->id) ->first();
         $data['job_preferences'] = DB::table('job_preferences') ->where('user_id', auth()->user()->id) ->first();
         $data['cities'] = DB::table('city')->get();
-        $data['categories'] = explode(',', $data['job_preferences']->categories);
-        $data['classes'] = explode(',', $data['job_preferences']->classes);
-        $data['subjects'] = explode(',', $data['job_preferences']->subjects);
-        $data['tutoring_place'] = explode(',', $data['job_preferences']->tutoring_place);
-        $data['available_days'] = explode(',', $data['job_preferences']->available_days);
-        $data['preferred_location'] = explode(',', $data['job_preferences']->preferred_location);
+        if($data['job_preferences']){
+            $data['categories'] = explode(',', $data['job_preferences']->categories);
+            $data['classes'] = explode(',', $data['job_preferences']->classes);
+            $data['subjects'] = explode(',', $data['job_preferences']->subjects);
+            $data['tutoring_place'] = explode(',', $data['job_preferences']->tutoring_place);
+            $data['available_days'] = explode(',', $data['job_preferences']->available_days);
+            $data['preferred_location'] = explode(',', $data['job_preferences']->preferred_location);
+        }else{
+            $data['categories'] = [];
+            $data['classes'] = [];
+            $data['subjects'] = [];
+            $data['tutoring_place'] = [];
+            $data['available_days'] = [];
+            $data['preferred_location'] = [];
+        }
         return view('edit_job_preferences ', $data);
     }
     public function getLocation($city_id){

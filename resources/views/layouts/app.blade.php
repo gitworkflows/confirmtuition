@@ -56,8 +56,13 @@
                         </li>
                         @endguest
                         <li class="nav-item">
-                            <a class="nav-link" href="search-listing.html">
+                            <a class="nav-link" href="{{url('jobs')}}">
                                 Available Tuitions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('tutors')}}">
+                                Tutor List
                             </a>
                         </li>
                         @auth
@@ -66,6 +71,13 @@
                                 Profile
                             </a>
                         </li>
+                        @if(auth()->user()->role ==1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('admin')}}">
+                                Admin Panel
+                            </a>
+                        </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout
@@ -158,6 +170,7 @@
     </div>
     <!-- Custom Tooltip Render Here -->
 
+    <script src="{{asset('public/frontend/asset/js/vendor/jquery.min.js')}}"></script>
     <script src="{{asset('public/frontend/asset/js/vendor/popper-core.js')}}"></script>
     <script src="{{asset('public/frontend/asset/js/vendor/bootstrap.min.js')}}"></script>
     <script src="{{asset('public/frontend/asset/js/vendor/appear.js')}}"></script>
@@ -167,6 +180,11 @@
     <script src="{{asset('public/frontend/asset/js/vendor/tippy.js')}}"></script>
     <script src="{{asset('public/frontend/asset/js/vendor/typed.min.js')}}"></script>
     <script src="{{asset('public/frontend/asset/js/main.js')}}"></script>
+    <script src="{{asset('public/frontend/asset/js/vendor/nouislider.min.js')}}"></script>
+    <script src="{{asset('public/frontend/asset/js/vendor/wNumb.js')}}"></script>
+    <script src="{{asset('public/frontend/asset/js/vendor/tippy.js')}}"></script>
+    <script src="{{asset('public/frontend/asset/js/vendor/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+    <script src="{{asset('public/frontend/asset/js/vendor/venobox.min.js')}}"></script>
 </body>
 
 </html>

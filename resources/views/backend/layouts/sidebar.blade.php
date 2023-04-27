@@ -1,7 +1,5 @@
 <div id="sidebar" class="sidebar">
-
     <div data-scrollbar="true" data-height="100%">
-
         <ul class="nav">
             <li class="nav-profile">
                 <a href="javascript:;" data-toggle="nav-profile">
@@ -27,30 +25,25 @@
                 </ul>
             </li>
         </ul>
-
-
         <ul class="nav">
-            <li class="nav-header">General</li>
             <li>
-                <a href="https://localhost/circle/admin/dashboard">
+                <a href="{{url('/')}}">
+                    <i class="fa fa-home"></i>
+                    <span>Visit Site</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url('admin')}}">
                     <i class="fa fa-dashboard"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            
             <li>
-                <a href="{{url('admin/applications')}}">
+                <a href="{{url('admin/jobs')}}">
                     <i class="fa fa-circle"></i>
-                    <span>Applications</span>
+                    <span>Job List</span>
                 </a>
             </li>
-            <!-- <li>
-                <a href="{{url('admin/complain')}}">
-                    <i class="fa fa-circle"></i>
-                    <span>Complain</span>
-                </a>
-            </li>
-            
             <li class="has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>
@@ -58,15 +51,13 @@
                     <span>Member List</span>
                 </a>
                 <ul class="sub-menu">
-                    <li><a href="https://localhost/circle/admin/reseller/index">Reseller</a></li>
-                    <li><a href="https://localhost/circle/admin/admin/index">Admin</a></li>
+                    <li><a href="{{url('admin/tutors')}}">Tutor</a></li>
+                    <li><a href="{{url('admin/guardians')}}">Guardian</a></li>
+                    <li><a href="{{url('admin/admins')}}">Admin</a></li>
                 </ul>
-            </li> -->
+            </li> 
             <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
-
         </ul>
-
     </div>
-
 </div>
 <div class="sidebar-bg"></div>

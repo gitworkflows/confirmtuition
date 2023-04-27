@@ -3,7 +3,19 @@
 @section('content')
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" /> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js" defer></script>
+@php
+if (isset($job_preferences) && property_exists($job_preferences, 'from_time')) {
+    $from_time = date('H:i:s', strtotime($job_preferences->from_time));
+} else {
+    $from_time = 'Not Given';
+}
+if (isset($job_preferences) && property_exists($job_preferences, 'to_time')) {
+    $to_time = date('H:i:s', strtotime($job_preferences->to_time));
+} else {
+    $to_time = 'Not Given';
+}
+@endphp
 <main class="tu-main tu-bgmain">
     <div class="tu-main-section">
         <div class="container">
@@ -361,13 +373,13 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>From Time</label>
-                                        <input type="time" name="from_time" value="{{date('H:i:s', strtotime($job_preferences->from_time))}}" class="form-control" />
+                                        <input type="time" name="from_time" value="{{$from_time}}" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>To Time</label>
-                                        <input type="time" name="to_time" value="{{date('H:i:s', strtotime($job_preferences->to_time))}}" class="form-control" />
+                                        <input type="time" name="to_time" value="{{$to_time}}" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="col-md-3">

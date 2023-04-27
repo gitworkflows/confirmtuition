@@ -1,0 +1,8 @@
+@media only screen and (max-width: 676px){
+	#header {
+        display: inline-flex;
+    }
+    .page-header-fixed {
+        padding-top: 50px;
+    }
+}

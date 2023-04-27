@@ -44,3 +44,9 @@ div#navbarSupportedContent {
 ul#tu-counter {
     text-align: center;
 }
+.job-info th, .job-info td {
+    border: none;
+    text-align: left;
+    line-height: 1.5;
+    font-weight: normal;
+}

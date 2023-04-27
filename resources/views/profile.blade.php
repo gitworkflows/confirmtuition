@@ -5,37 +5,48 @@
 if(Auth::user()->avatar){
 $avatar_src=asset('public/uploaded/user/'. Auth::user()->avatar);
 }else{
-$avatar_src=asset('public/frontend/asset/images/profile/img-01.jpg');
+$avatar_src=asset('public/frontend/asset/images/avatar.png');
 }
 
 if(Auth::user()->ssc_olevel){
 $ssc_olevel_src=asset('public/uploaded/user/'. Auth::user()->ssc_olevel);
 }else{
-$ssc_olevel_src=asset('public/frontend/asset/images/profile/img-01.jpg');
+$ssc_olevel_src=asset('public/frontend/asset/images/avatar.png');
 }
 
 if(Auth::user()->hsc_alevel){
 $hsc_alevel_src=asset('public/uploaded/user/'. Auth::user()->hsc_alevel);
 }else{
-$hsc_alevel_src=asset('public/frontend/asset/images/profile/img-01.jpg');
+$hsc_alevel_src=asset('public/frontend/asset/images/avatar.png');
 }
 
 if(Auth::user()->nid_passport_birth){
 $nid_passport_birth_src=asset('public/uploaded/user/'. Auth::user()->nid_passport_birth);
 }else{
-$nid_passport_birth_src=asset('public/frontend/asset/images/profile/img-01.jpg');
+$nid_passport_birth_src=asset('public/frontend/asset/images/avatar.png');
 }
 
 if(Auth::user()->slip_id){
 $slip_id_src=asset('public/uploaded/user/'. Auth::user()->slip_id);
 }else{
-$slip_id_src=asset('public/frontend/asset/images/profile/img-01.jpg');
+$slip_id_src=asset('public/frontend/asset/images/avatar.png');
 }
 
 if(Auth::user()->others){
 $others_src=asset('public/uploaded/user/'. Auth::user()->others);
 }else{
-$others_src=asset('public/frontend/asset/images/profile/img-01.jpg');
+$others_src=asset('public/frontend/asset/images/avatar.png');
+}
+
+if (isset($job_preferences) && property_exists($job_preferences, 'from_time')) {
+    $from_time = date('h:i a', strtotime($job_preferences->from_time));
+} else {
+    $from_time = 'Not Given';
+}
+if (isset($job_preferences) && property_exists($job_preferences, 'to_time')) {
+    $to_time = date('h:i a', strtotime($job_preferences->to_time));
+} else {
+    $to_time = 'Not Given';
 }
 @endphp
 <main class="tu-main tu-bgmain">
@@ -62,9 +73,16 @@ $others_src=asset('public/frontend/asset/images/profile/img-01.jpg');
                                             <p class="mb-1">Profile Completed: 10%</p>
                                         </div>
                                         <div class="col-lg-4">
-                                            <p class="mb-1">Quiz Mark: N/A</p>
-                                            <p class="mb-1">Address:
-                                                {{auth()->user()->address ?? 'Not Given'}}</p>
+                                            <p class="mb-1">Role: 
+                                                @if(auth()->user()->role == 1)
+                                                Admin
+                                                @elseif(auth()->user()->role == 2)
+                                                Tutor
+                                                @elseif(auth()->user()->role == 3)
+                                                Guardian
+                                                @endif
+                                            <!-- <p class="mb-1">Address:
+                                                {{auth()->user()->address ?? 'Not Given'}}</p> -->
                                             <p class="mb-1"><a href="{{route('change.password')}}"
                                                     class="btn btn-outline-primary">Change
                                                     Password</a></p>
@@ -77,6 +95,7 @@ $others_src=asset('public/frontend/asset/images/profile/img-01.jpg');
                             </div>
                         </div>
                     </div>
+                    @if(auth()->user()->role == 2)
                     <div class="tu-boxwrapper mt-3">
                         <div class="tu-boxarea">
                             <div class="row">
@@ -156,7 +175,7 @@ $others_src=asset('public/frontend/asset/images/profile/img-01.jpg');
                                     <div class="tu-box">
                                         <ul class="p-0">
                                             <li><strong>Available Days:</strong> {{$job_preferences->available_days ?? 'Not Given'}}</li>
-                                            <li><strong>Time:</strong> {{$job_preferences->from_time ? date('h:i a', strtotime($job_preferences->from_time)) : 'Not Given'}} - {{$job_preferences->from_time ? date('h:i a', strtotime($job_preferences->to_time)) : 'Not Given'}}</li>
+                                            <li><strong>Time:</strong> {{$from_time}} - {{$to_time}}</li>
                                             <li><strong>City:</strong> {{$job_preferences->city_name ?? 'Not Given'}}</li>
                                             <li><strong>Location:</strong> {{$job_preferences->location_name ?? 'Not Given'}}</li>
                                             <li><strong>Expected Salary: </strong>{{$job_preferences->expected_salary ?? 'Not Given'}}</li>
@@ -283,38 +302,7 @@ $others_src=asset('public/frontend/asset/images/profile/img-01.jpg');
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="tu-boxwrapper mt-3">
-                        <div class="tu-boxarea">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="tu-boxsm">
-                                        <div class="tu-boxsmtitle">
-                                            <h4>Experience Information</h4>
-                                        </div>
-                                    </div>
-                                    <div class="tu-box">
-                                        <ul class="p-0">
-                                            <li><strong>Total : </strong>5</li>
-                                            <li><strong>Details : </strong>More than 5 years experience</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="tu-boxsm">
-                                        <div class="tu-boxsmtitle">
-                                            <h4>Quiz</h4>
-                                        </div>
-                                    </div>
-                                    <div class="tu-box">
-                                        <ul class="p-0">
-                                            <li><strong>Exam Name : </strongNot Given </li>
-                                            <li><strong>Result : </strongNot Given </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                    @endif
                 </div>
             </div>
         </div>

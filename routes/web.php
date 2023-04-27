@@ -26,6 +26,9 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('jobs', [App\Http\Controllers\JobsController::class, 'joblist'])->name('joblist');
+Route::get('tutors', [App\Http\Controllers\MemberController::class, 'tutorlist'])->name('tutorlist');
+
 Route::get('application-form', [App\Http\Controllers\PageController::class, 'application_form'])->name('application.form');
 Route::post('application-store', [App\Http\Controllers\PageController::class, 'application_store'])->name('application.from.store');
 
@@ -44,7 +47,6 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function()
 {
     Route::get('profile', [App\Http\Controllers\PageController::class, 'profile'])->name('profile');
-    Route::get('jobs', [App\Http\Controllers\PageController::class, 'jobs'])->name('jobs');
     Route::get('edit-profile', [App\Http\Controllers\PageController::class, 'editProfile'])->name('edit.profile');
     Route::get('edit-basic-info', [App\Http\Controllers\PageController::class, 'editBasicInfo'])->name('edit.basic.info');
     Route::get('edit-credentials', [App\Http\Controllers\PageController::class, 'editCredentials'])->name('edit.credentials');
@@ -72,7 +74,11 @@ Route::group(['middleware' => 'auth'], function()
 Route::group(['middleware' => 'admin'], function()
 {
     Route::get('admin', [App\Http\Controllers\DashboardPagesController::class, 'index'])->name('admin');
-    Route::get('admin/applications', [App\Http\Controllers\DashboardPagesController::class, 'applications'])->name('admin.applications');
+    Route::get('admin/jobs', [App\Http\Controllers\JobsController::class, 'jobs'])->name('admin.jobs');
+    Route::get('admin/jobs/new', [App\Http\Controllers\JobsController::class, 'newJob'])->name('admin.new.job');
+    Route::post('admin/jobs/new', [App\Http\Controllers\JobsController::class, 'storeJob'])->name('admin.store.job');
     Route::get('admin/application/{id}', [App\Http\Controllers\DashboardPagesController::class, 'application'])->name('admin.application');
     Route::get('admin/applicationd/{id}', [App\Http\Controllers\DashboardPagesController::class, 'invoice'])->name('admin.invoice');
+
+    Route::get('admin/tutors', [App\Http\Controllers\MemberController::class, 'tutors'])->name('admin.tutors');
 });

@@ -8,17 +8,17 @@
             <span class="icon-bar"></span>
         </button>
     </div>
-    <a class="btn btn-primary text-white" style="padding: 1px 5px;height: 20px;" href="{{url('/')}}" target="_blank">Visit Site</a>
+    <!-- <a class="btn btn-primary text-white" style="padding: 1px 5px;height: 20px;" href="{{url('/')}}" target="_blank">Visit Site</a> -->
 
     <ul class="navbar-nav navbar-right">
-        <li class="navbar-form">
+        <!-- <li class="navbar-form">
             <form action="#" method="POST" name="search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter keyword" />
                     <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                 </div>
             </form>
-        </li>
+        </li> -->
         <li class="dropdown navbar-user">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="@if(!empty(Auth::user()->image)) {{asset( Auth::user()->image ) }} @else {{asset('img/avatar.png')}} @endif" alt="image" />

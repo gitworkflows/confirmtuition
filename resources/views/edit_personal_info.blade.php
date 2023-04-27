@@ -150,13 +150,13 @@
                                             value="{{@$personal_info->mothers_number}}" name="mothers_number">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <!-- <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Address <span class="text-danger">*</span></label>
                                         <textarea rowspan="3" class="form-control" placeholder="Enter Address"
                                             name="address">{{@$personal_info->address}}</textarea>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Overview <span class="text-danger">*</span></label>
